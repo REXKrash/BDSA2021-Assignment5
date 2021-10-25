@@ -9,21 +9,23 @@ namespace GildedRose.Console
         {
             System.Console.WriteLine("OMGHAI!");
 
+
+
             var app = new Program()
             {
                 Items = new List<Item>
                 {
-                    new Item {Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20},
-                    new Item {Name = "Aged Brie", SellIn = 2, Quality = 0},
-                    new Item {Name = "Elixir of the Mongoose", SellIn = 5, Quality = 7},
-                    new Item {Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80},
-                    new Item
+                    new CommonItem {Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20},
+                    new CheeseItem {Name = "Aged Brie", SellIn = 2, Quality = 0},
+                    new CommonItem {Name = "Elixir of the Mongoose", SellIn = 5, Quality = 7},
+                    new LegendaryItem {Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80},
+                    new BackstageItem
                         {
                             Name = "Backstage passes to a TAFKAL80ETC concert",
                             SellIn = 15,
                             Quality = 20
                         },
-                    new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
+                    new ConjuredItem {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
                 }
             };
 
@@ -35,8 +37,11 @@ namespace GildedRose.Console
 
         public void UpdateQuality()
         {
-            for (var i = 0; i < Items.Count; i++)
+            foreach (var item in Items)
             {
+                item.Update();
+            }
+            /* {
                 if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
                 {
                     if (Items[i].Quality > 0)
@@ -113,16 +118,7 @@ namespace GildedRose.Console
                         }
                     }
                 }
-            }
+            } */
         }
-    }
-
-    public class Item
-    {
-        public string Name { get; set; }
-
-        public int SellIn { get; set; }
-
-        public int Quality { get; set; }
     }
 }
