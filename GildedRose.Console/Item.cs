@@ -11,8 +11,14 @@ namespace GildedRose.Console
 
         public int Quality { get; set; }
 
-        public virtual void Update(){}
+        public virtual void Update() {
+            SellIn--;
+            Quality -= SellIn < 0 ? 2 : 1;
+
+            if (Quality <= 0) Quality = 0;
+            else if (Quality >= 50) Quality = 50;
+        }
 
 
-    }  
+    }
 }
